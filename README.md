@@ -6,7 +6,7 @@ Backend do sistema para gestão de consultas em clínicas médicas - Medicar
 1. Clone o repositório do projeto
 
 ```bash
-git clone https://github.com/grmnunes/test-intmed-app.git
+git clone https://github.com/grmnunes/backend-medicar.git
 ```
 
 2. Utilize o [pip](https://pip.pypa.io/en/stable/) para instalar as dependências com o comando: 
