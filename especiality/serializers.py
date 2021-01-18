@@ -1,5 +1,7 @@
 from rest_framework import serializers
+
 from .models import Especiality
+
 
 class EspecialitySerializer(serializers.ModelSerializer):
     
@@ -9,3 +11,4 @@ class EspecialitySerializer(serializers.ModelSerializer):
             'id',
             'name',
         )
+        

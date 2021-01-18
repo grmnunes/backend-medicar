@@ -26,18 +26,18 @@ class ConsultationViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixi
     permission_classes = [IsAuthenticated]
 
     def list(self, request):
-        
         consultations = (Consultation.objects.exclude(status='C')
+                            .exclude(status='R')
                             .filter(patient=request.user.id)
                             .filter(day__gte=date.today())
-                            .filter(schedule__hour__gte=datetime.now()
-                            .strftime('%H:%M'))
+                            .filter(schedule__hour__gte=datetime.now().strftime('%H:%M'))
                             .order_by('day','schedule__hour')
                         )
 
         serializer = ConsultationSerializer(consultations, many=True)
 
         return Response(serializer.data)
+
 
     def destroy(self, request, pk):
         
@@ -57,9 +57,8 @@ class ConsultationViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixi
         print(schedule.day)
         print(consultation.status)
         if schedule.day < date.today() or consultation.status == 'R' or consultation.status == 'C':
-            raise ValidationError({"status_code": 401, "detail": "Não é mais possível desmarcar esta consulta."})    
-        
-        
+            raise ValidationError(detail='Não é mais possível desmarcar esta consulta.')    
+            
         schedule_hour = ScheduleHour.objects.get(pk=consultation.schedule.id)
         consultation.status = 'C'
         schedule_hour.is_available = True

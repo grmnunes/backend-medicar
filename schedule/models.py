@@ -3,7 +3,7 @@ from datetime import date
 import time
 
 from doctor.models import Doctor
-from .validators import validate_schedule_day, validate_schedule_hour, validate_schedule
+from .validators import validate_schedule_day
 
 
 class Schedule(models.Model):
@@ -22,8 +22,8 @@ class Schedule(models.Model):
 
 
 class ScheduleHour(models.Model):
-    schedule = models.ForeignKey(Schedule, verbose_name='Agenda',related_name='schedule', limit_choices_to = {'day__gte': date.today()} ,validators=[validate_schedule], on_delete=models.CASCADE)
-    hour = models.TimeField(verbose_name='Hora', validators=[validate_schedule_hour], help_text='O horário deve conter apenas horas e minutos ex.: 12:45')
+    schedule = models.ForeignKey(Schedule, verbose_name='Agenda',related_name='schedule', limit_choices_to = {'day__gte': date.today()}, on_delete=models.CASCADE)
+    hour = models.TimeField(verbose_name='Hora', help_text='O horário deve conter apenas horas e minutos ex.: 12:45')
     is_available = models.BooleanField(verbose_name='Disponível', default=True)
     
     class Meta:
@@ -34,4 +34,3 @@ class ScheduleHour(models.Model):
 
     def __str__(self):
         return f'{self.hour}'
-

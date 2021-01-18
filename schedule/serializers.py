@@ -16,7 +16,6 @@ class ScheduleSerializer(serializers.ModelSerializer):
     schedule = serializers.StringRelatedField(many=True)
     doctor = DoctorSerializer()
 
-
     class Meta:
         model = Schedule
         fields = (
@@ -26,3 +25,4 @@ class ScheduleSerializer(serializers.ModelSerializer):
             'schedule',
         )
         depth = 2
+        

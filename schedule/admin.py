@@ -10,7 +10,7 @@ class ScheduleAdmin(admin.ModelAdmin):
 
 @admin.register(ScheduleHour)
 class ScheduleHourAdmin(admin.ModelAdmin):
-  list_display = ('schedule', 'hour', 'id')
-  list_filter = ('hour',)
+  list_display = ('schedule', 'hour', 'is_available', 'id')
+  list_filter = ('hour', 'is_available')
 
 

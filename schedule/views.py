@@ -11,8 +11,7 @@ from .models import Schedule, ScheduleHour
 from .serializers import ScheduleSerializer
 
 
-
-class ScheduleViewSet(viewsets.ModelViewSet):
+class ScheduleViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     permission_classes = (permissions.DjangoModelPermissions, )
     queryset = Schedule.objects.filter(day__gte=date.today()).filter(is_completed='False')
     serializer_class = ScheduleSerializer

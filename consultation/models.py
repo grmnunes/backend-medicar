@@ -5,7 +5,6 @@ from schedule.models import ScheduleHour
 from patient.models import Patient
 
 class Consultation(models.Model):
-
     STATUS_CHOICES = (
         ('M','MARCADA'),
         ('R','REALIZADA'),
@@ -19,15 +18,12 @@ class Consultation(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='M')
     day = models.DateField(verbose_name='Dia da consulta')
 
-
     class Meta:
         verbose_name = 'Consulta'
         verbose_name_plural = 'Consultas'
-        #unique_together = ['patient', 'schedule']
         ordering = ['-day']
 
 
     def __str__(self):
         return f'Consulta com {self.doctor.name} em {self.scheduling_date}'
         
-
