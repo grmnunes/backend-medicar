@@ -53,3 +53,28 @@ Agendas| [/api/v1/agendas](http://127.0.0.1:8000/api/v1/medicos)|GET
 Consultas| [/api/v1/consultas](http://127.0.0.1:8000/api/v1/consultas)|GET, POST, DELETE
 
 > Todas as rotas, exceto, as de cadastro e login, necessitam de autenticação.
+## Cadastro
+```javascript
+{
+	"name": "Joao",
+	"username": "joao",
+	"email": "joao@email.com",
+	"password1": "12345678&&",
+	"password2": "12345678&&"
+} 
+```
+## Login
+```javascript
+{
+	"username": "joao",
+	"password": "12345678&&"
+	
+}
+```
+## Marcar consulta
+```javascript
+{
+	"agenda_id": 1,
+	"horario": "22:00"
+}
+```
