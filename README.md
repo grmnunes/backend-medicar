@@ -15,19 +15,27 @@ pip install -r requirements.txt
 ```
 > O projeto utiliza o banco de dados SQLite.
 
-3. Execute as **migrations** com o comando: 
+3. Crie as **migrations** com o comando: 
+
+```bash
+python manage.py makemigrations
+```
+
+4. Execute as **migrations** com o comando: 
 
 ```bash
 python manage.py migrate
 ```
 
-4. Crie o usuário administrador do sistema (**superusuario**) com o comando: 
+5. Crie o usuário administrador do sistema (**superusuario**) com o comando: 
 
 ```bash
 python manage.py createsuperuser
+Ou
+winpty python manage.py createsuperuser (*Caso esteja em utilizando o gitbash*)
 ```
 
-5. Por fim, execute o sistema com o comando: 
+6. Por fim, execute o sistema com o comando: 
 
 ```bash
 python manage.py runserver

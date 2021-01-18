@@ -54,8 +54,7 @@ class ConsultationViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixi
             raise ValidationError({"status_code": 401, "detail": "Não é possivel atender sua solitação."})
         
         schedule = Schedule.objects.get(pk=consultation.schedule.schedule.id)
-        print(schedule.day)
-        print(consultation.status)
+       
         if schedule.day < date.today() or consultation.status == 'R' or consultation.status == 'C':
             raise ValidationError(detail='Não é mais possível desmarcar esta consulta.')    
             
