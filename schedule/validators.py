@@ -15,5 +15,5 @@ def validate_schedule_hour(hour):
     if hour.strftime('%H:%M') < datetime.now().strftime('%H:%M'):
        raise ValidationError("Sinto muito, mas não é possível cadastrar horários passados na agenda.")
     
-    print(f'%%%%%%%%{hour}%%%%%%%%')
-    
+def validate_schedule(self):
+    print(f'$$$$$$${self}$$$$$$$$$$')

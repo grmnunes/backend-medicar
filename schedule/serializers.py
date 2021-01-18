@@ -11,9 +11,7 @@ class ScheduleHourSerializer(serializers.ModelSerializer):
         fields = (
             'hour', 
         )
-        #depth = 1
 
-       
 class ScheduleSerializer(serializers.ModelSerializer):
     schedule = serializers.StringRelatedField(many=True)
     doctor = DoctorSerializer()

@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework import status
 from datetime import date, datetime
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError, NotFound
 
 from .models import Consultation
 from patient.serializers import PatientSerializer
@@ -45,7 +45,7 @@ class ConsultationSerializer(serializers.ModelSerializer):
         schedule_hour = None
 
         if hour_request < datetime.now().strftime('%H:%M'):
-            raise ValidationError({"status_code": 401, "detail": "Sinto muito, mas não é possível cadastrar uma consulta com horários passados."})
+            raise ValidationError(detail='Sinto muito, mas não é possível cadastrar uma consulta com horários passados.')
 
         if validate_schedule(schedule_id):
 
@@ -53,7 +53,7 @@ class ConsultationSerializer(serializers.ModelSerializer):
             day = schedule.day
 
         else:
-            raise ValidationError({'error':'Sinto muito, mas a agenda selecionada é invalida'})
+            raise NotFound(detail='Sinto muito, mas a agenda selecionada não foi encontrada.')
 
         user_consultations = (Consultation.objects
                         .filter(patient=self.context['request'].user)
@@ -105,7 +105,7 @@ class ConsultationSerializer(serializers.ModelSerializer):
            
             return consultation
         else:
-            raise ValidationError("Illegal parameters") #Response({'msg':'Sinto muito, mas o horário selecionado não está disponivel nesta agenda.'}, status.HTTP_400_BAD_REQUEST)
+            raise ValidationError("Houve um erro ao cadastrar a consulta")
         
     def create(self, validated_data):
     

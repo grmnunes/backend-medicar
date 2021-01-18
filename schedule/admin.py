@@ -5,11 +5,12 @@ from .models import Schedule, ScheduleHour
 
 @admin.register(Schedule)
 class ScheduleAdmin(admin.ModelAdmin):
-  list_display = ('id', 'doctor', 'day')
+  list_display = ('doctor', 'day', 'id')
   list_filter = ('doctor', 'day')
-
 
 @admin.register(ScheduleHour)
 class ScheduleHourAdmin(admin.ModelAdmin):
-  list_display = ('id', 'schedule', 'hour', 'is_available')
-  list_filter = ('schedule', 'hour', 'is_available')
+  list_display = ('schedule', 'hour', 'id')
+  list_filter = ('hour',)
+
+
